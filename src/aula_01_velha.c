@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <aula_01.h>
 
 int aula_01()
 {
@@ -37,5 +36,5 @@ int aula_01()
         if (saida == '0')
             break;
     }
-    return 0;
+    return 1;
 }

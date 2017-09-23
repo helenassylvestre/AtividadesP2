@@ -1,6 +1,5 @@
-#include <aula_04.h>
 
-void aula_04()
+int aula_04()
 {
     char header[] = "Aula 04 ==============================";
     char pergunta[] = "Considere o trecho de programa abaixo. Depois de executado, responda quais são os valores associados aos itens de (a) até (g), supondo que os endereços das variáveis u e v são 1130 e 1132, respectivamente.\n";
@@ -24,4 +23,5 @@ void aula_04()
     printf("Resposta de g) *pu = %d\n", *pu);
 
     printf("%s >>>>>\n", header);
+    return 1;
 }

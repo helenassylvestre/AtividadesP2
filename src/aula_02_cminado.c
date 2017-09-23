@@ -5,62 +5,68 @@
 #include <time.h>
 
 #define TAM 20
-/*
-como jogar
-clique em um quadrado ara ver quantas minas estao ao redor dele. ara vencer,
-vire todos o quadraados sem revelar uma mina.
-o camo minado e um teste de memoria e raciocinio aarentemente simles. e um dos
-jogos do windows mais oulares de todos os temos. o objetivo e encontrar os
+/**
+
+O campo minado é um teste de memória e raciocínio aparentemente simples. É um dos
+jogos do windows mais populares de todos os tempos. O objetivo é encontrar os
 quadrados vazios e evitar as minas.
 
-regras e nooes basicas
-objetivo
-encontrar os quadrados vazios e evitar as minas. quanto mais raido voce
-esvaziar o tabuleiro, melhor sera a sua ontuaao.
-tabuleiro
-o camo minado ossui tres ooes de tabuleiros, cada um deles rogressivamente
-mais dificil que o outro.
-iniciante 81 quadrados e 10 minas
-intermediario 256 quadrados e 40 minas
-avanado 480 quadrados e 99 minas
-tambem e ossivel criar um tabuleiro ersonalizado clicando no menu jogo e em
-ooes. o camo minado ermite tabuleiros com ate 720 quadrados e 668 minas.
+Regras e noções básicas
+=========================
 
-Como jogar
-As regras do Campo Minado são simples:
+Objetivo
+==========
+Encontrar os quadrados vazios e evitar as minas. Quanto mais rápido você
+esvaziar o tabuleiro, melhor será sua pontuação.
 
-Se você descobrir uma mina, o jogo acaba.
+Tabuleiro
+==========
+O campo minado possui três opções de tabuleiros, cada um deles progressimamente
+mais difícil que o outro.
+* Iniciante - 81 Quadrados e 10 Minas
+* Intermediário - 256 Quadrados e 40 Minas
+* Avançado - 480 Quadrados e 99 Minas
 
-Se descobrir um quadrado vazio, você continua jogando.
+Também é possível criar um tabuleiro personalizado clicando no menu jogo e em
+opções. O campo minado permite tabuleiros com até 720 quaddrados e 668 minas.
 
-Se parecer um número, ele informará quantas minas estão escondidas nos oito
+Como Jogar
+==========
+As regras do campo minado são simples:
+1. Clique em um quadrado ara ver quantas minas estão ao redor dele. Para vencer,
+vire todos o quadraados sem revelar uma mina.
+
+2. Se você descobrir uma mina, o jogo acaba.
+
+3. Se descobrir um quadrado vazio, você continua jogando.
+
+4. Se parecer um número, ele informará quantas minas estão escondidas nos oito
 quadrados que o cercam. Você usa essa informação para deduzir em que quadrados
 próximos é seguro clicar.
 
-Sugestões e dicas
-Marque as minas. Se você suspeita que um quadrado contém uma mina, clique nele
+Sugestões e Dicas
+====================
+* Marque as minas. Se você suspeita que um quadrado contém uma mina, clique nele
 com o botão direito do mouse.Isso marca o quadrado com uma bandeira.(Se não
 tiver certeza, clique com o botão direito do mouse novamente para inserir um
 ponto de interrogação.)
-
-Estude os padrões. Se três quadrados seguidos exibirem os números 2, 3 e 2,
+* Estude os padrões. Se três quadrados seguidos exibirem os números 2, 3 e 2,
 provavelmente haverá três minas alinhadas ao lado desses números.Se um quadrado
 mostrar o número 8, todos os quadrados que o circundam estarão minados.
-
-Explore o desconhecido. Não sabe onde clicar em seguida?Tente esvaziar algum
+* Explore o desconhecido. Não sabe onde clicar em seguida?Tente esvaziar algum
 território inexplorado.É melhor clicar no meio dos quadrados que não estão
 marcados do que em uma área que você suspeita estar minada.
 
-*/
-/**
-** Desafios
-** - Campo
-** - CampoUsuario OK
-** - PopularBombas
-** - PreencherDicas
-** - Navegação
+Requisitos passados pela Professora
+*- Campo
+*- CampoUsuario OK
+*- PopularBombas
+*- PreencherDicas
+*- Navegação
+
 **/
 
+// Definições dos objetos
 void definirTamanhoCampo (int *ptamL, int *ptamC);
 void limparCampoUsuario (char campoUsuario[TAM][TAM]);
 void limparCampo (char campo[TAM][TAM]);
