@@ -61,6 +61,15 @@ marcados do que em uma área que você suspeita estar minada.
 ** - Navegação
 **/
 
+void definirTamanhoCampo (int *ptamL, int *ptamC);
+void limparCampoUsuario (char campoUsuario[TAM][TAM]);
+void limparCampo (char campo[TAM][TAM]);
+void imprimirCampoUsuario (char campoUsuario[TAM][TAM], int tamL, int tamC);
+void definirNivelDoJogo (int *p_QtdBombas, int tamL, int tamC);
+void lancarBombas(char campo[TAM][TAM], int qtdBombas, int tamL, int tamC);
+void lancarNumeros(char campo[TAM][TAM], int tamL, int tamC);
+int jogar (int tamL, int tamC, int qtdBombas, char campoUsuario[TAM][TAM], char campo[TAM][TAM]);
+
 int aula_08()
 {
     char campo[TAM][TAM];
@@ -83,6 +92,20 @@ int aula_08()
     // Limpar e configurar a matriz "campo" - DEBUG
     limparCampo(campo);
     imprimirCampoUsuario(campo, tamL, tamC);
+
+    // Lançar bombas
+    lancarBombas(campo, qtdBombas, tamL, tamC);
+    imprimirCampoUsuario(campo, tamL, tamC);
+
+    printf("\n*** QTD BOMBAS: %d***\n\n", qtdBombas);
+
+    printf("\n*** antes debug ***\n\n");
+    lancarNumeros(campo,tamL, tamC);
+    printf("\n*** depois debug ***\n\n");
+
+    imprimirCampoUsuario(campo, tamL, tamC);
+
+    jogar(tamL, tamC, qtdBombas, campoUsuario, campo);
 
     system("pause");
     return 0;
@@ -183,7 +206,7 @@ void definirNivelDoJogo (int *p_QtdBombas, int tamL, int tamC)
         }
     }
 }
-void lancarBombas(char *p_campo[TAM][TAM], int qtdBombas, int tamL, int tamC)
+void lancarBombas(char campo[TAM][TAM], int qtdBombas, int tamL, int tamC)
 {
     int b;
     srand(time(NULL));
@@ -197,39 +220,68 @@ void lancarBombas(char *p_campo[TAM][TAM], int qtdBombas, int tamL, int tamC)
         aleatC = rand() % tamC;
 
         if (aleatC != aleatC_last && aleatL != aleatL_last){
-            *p_campo[aleatL][aleatC] = "*";
+            campo[aleatL][aleatC] = '*';
         } else {
             b--;
         }
     }
 }
 
-void lancarNumeros(char *campo[TAM][TAM], int tamL, int tamC)
+void lancarNumeros(char campo[TAM][TAM], int tamL, int tamC)
 {
-    int countBomba;
-    int l, c;
-    if (*campo[l][c] != "*") {
+    int l, c, countBomba;
+
+
         for (l=0; l<tamL; l++) {
             for (c=0; c<tamC; c++) {
-                //fazer o relógio
-                if (*campo[l-1][c] == "*" && (l-1>=0))
-                    countBomba++;
-                if (*campo[l-1][c+1] == "*" && (l-1>=0) && (c+1<tamC))
-                    countBomba++;
-                if (*campo[l][c+1] == "*" && (c+1<tamC))
-                    countBomba++;
-                if (*campo[l+1][c+1] == "*" && (l+1<tamL) && (c+1<tamC))
-                    countBomba++;
-                if (*campo[l+1][c] == "*" && (l+1<tamL))
-                    countBomba++;
-                if (*campo[l+1][c-1] == "*" && (l+1<tamL) && (c-1>=0))
-                    countBomba++;
-                if (*campo[l][c-1] == "*" && (c-1>=0))
-                    countBomba++;
-                if (*campo[l-1][c-1] == "*" && (l-1>=0) && (c-1>=0))
-                    countBomba++;
-                *campo[l][c] = (char)countBomba;
+
+                if (campo[l][c] != '*') { // Se não for bomba
+                    countBomba = 0;
+                    //fazer o relógio
+                    if (campo[l-1][c]   == '*' && (l-1>=0))                 { countBomba++; }
+                    if (campo[l-1][c+1] == '*' && (l-1>=0) && (c+1<tamC))   { countBomba++; }
+                    if (campo[l][c+1]   == '*' && (c+1<tamC))               { countBomba++; }
+                    if (campo[l+1][c+1] == '*' && (l+1<tamL) && (c+1<tamC)) { countBomba++; }
+                    if (campo[l+1][c]   == '*' && (l+1<tamL))               { countBomba++; }
+                    if (campo[l+1][c-1] == '*' && (l+1<tamL) && (c-1>=0))   { countBomba++; }
+                    if (campo[l][c-1]   == '*' && (c-1>=0))                 { countBomba++; }
+                    if (campo[l-1][c-1] == '*' && (l-1>=0) && (c-1>=0))     { countBomba++; }
+                    campo[l][c] = (char)(countBomba + 48);
+                }
             }
         }
+}
+
+int jogar (int tamL, int tamC, int qtdBombas, char campoUsuario[TAM][TAM], char campo[TAM][TAM])
+{
+    int i, numJogadas, linha, coluna;
+
+    numJogadas = (tamL * tamC) - qtdBombas;
+
+    for (i=0; i<numJogadas; i++) {
+        printf("\n\nEscolha a linha e a coluna que deseja jogar: ");
+        scanf("%d %d", &linha, &coluna);
+
+        if ((linha > 0 && linha <= tamL) && (coluna > 0 && coluna <= tamC)) {
+
+            if (campoUsuario[linha-1][coluna-1] == '-') { // Se jogada válida (posição nunca foi jogada)
+                if (campo[linha-1][coluna-1] == '*') { // Se tiver bomba --> GAME OVER
+                    printf("\n\n GAME OVER!!! \n\n");
+                    return 0;
+                } else { // Se não tiver bomba --> Marca número
+                    campoUsuario[linha-1][coluna-1] = campo[linha-1][coluna-1];
+                }
+            } else {
+                printf("\n\nJogada já realizada! Tenta novamente... \n\n");
+                i--;
+            }
+
+        } else {
+            printf("\n\nJogada já realizada! Tenta novamente... \n\n");
+            i--;
+        }
+        imprimirCampoUsuario(campoUsuario, tamL, tamC);
     }
+    printf("\n\n PARABÉNS!!! VOCÊ GANHOU A PARTIDA!!!\n\n");
+    return 1;
 }

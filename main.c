@@ -57,7 +57,7 @@ int menu()
 
         escolha = getchar();
 
-        Beep(666, 300);
+        //Beep(666, 300);
 
         switch (escolha) {
         case '0':
