@@ -187,15 +187,49 @@ void lancarBombas(char *p_campo[TAM][TAM], int qtdBombas, int tamL, int tamC)
 {
     int b;
     srand(time(NULL));
+    int aleatL, aleatL_last;
+    int aleatC, aleatC_last;
 
     for (b=0; b<qtdBombas; b++) {
-        //colocar as coordenadas das novas bombas pelos numeros aleatorios inicializados
-        int aleatL = rand() % tamL;
-        int aleatC = rand() % tamC;
+        aleatL_last = aleatL;
+        aleatC_last = aleatC;
+        aleatL = rand() % tamL;
+        aleatC = rand() % tamC;
 
-        *p_campo[aleatL][aleatC];
+        if (aleatC != aleatC_last && aleatL != aleatL_last){
+            *p_campo[aleatL][aleatC] = "*";
+        } else {
+            b--;
+        }
+    }
+}
 
-        printf("");
-
+void lancarNumeros(char *campo[TAM][TAM], int tamL, int tamC)
+{
+    int countBomba;
+    int l, c;
+    if (*campo[l][c] != "*") {
+        for (l=0; l<tamL; l++) {
+            for (c=0; c<tamC; c++) {
+                //fazer o relógio
+                if (*campo[l-1][c] == "*" && (l-1>=0))
+                    countBomba++;
+                if (*campo[l-1][c+1] == "*" && (l-1>=0) && (c+1<tamC))
+                    countBomba++;
+                if (*campo[l][c+1] == "*" && (c+1<tamC))
+                    countBomba++;
+                if (*campo[l+1][c+1] == "*" && (l+1<tamL) && (c+1<tamC))
+                    countBomba++;
+                if (*campo[l+1][c] == "*" && (l+1<tamL))
+                    countBomba++;
+                if (*campo[l+1][c-1] == "*" && (l+1<tamL) && (c-1>=0))
+                    countBomba++;
+                if (*campo[l][c-1] == "*" && (c-1>=0))
+                    countBomba++;
+                if (*campo[l-1][c-1] == "*" && (l-1>=0) && (c-1>=0))
+                    countBomba++;
+                *campo[l][c] = (char)countBomba;
+            }
+        }
     }
 }
