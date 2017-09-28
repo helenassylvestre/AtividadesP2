@@ -76,7 +76,7 @@ void lancarBombas(char campo[TAM][TAM], int qtdBombas, int tamL, int tamC);
 void lancarNumeros(char campo[TAM][TAM], int tamL, int tamC);
 int jogar (int tamL, int tamC, int qtdBombas, char campoUsuario[TAM][TAM], char campo[TAM][TAM]);
 
-int aula_08()
+int campo_minado()
 {
     char campo[TAM][TAM];
     char campoUsuario[TAM][TAM];

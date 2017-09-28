@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int aula_01()
+int jogo_da_velha()
 {
     // Declaração de Variáveis
     char tabuleiro[3][3];
     int ganhou = 0; // 0 = não ganhou | 1 = ganhou
-    int linha, coluna; // posição escolhida pelo jogador
+    //int linha, coluna; // posição escolhida pelo jogador
     int l, c; // contadores de linha e coluna
-    char jogador = 'x'; // Regra: Toda partida é inicializada com o Jogador x
+    //char jogador = 'x'; // Regra: Toda partida é inicializada com o Jogador x
     int numJogadas = 0; // Controla o número de jogadas
 
     char saida = '0';

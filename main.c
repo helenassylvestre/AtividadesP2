@@ -49,21 +49,19 @@
 
 #endif // defined
 
-//#include "src/aula_01.c"
-//#include "src/aula_04.c"
-
 float r_gas;
 
 int menu();
-int aula_01();
-int aula_04();
-int aula_08();
+int jogo_da_velha();
+int batalha_naval();
+int campo_minado();
 void gasolina();
 
 int main()
 {
     // Configuração do Português (Acentuação e Cedilha)
     setlocale(LC_CTYPE, "portuguese_brazil.1252");
+    //setlocale(LC_CTYPE, "portuguese-brazilian");
 
     while (menu() != 0) {
         system("pause");
@@ -79,7 +77,7 @@ int menu()
         printf("========== MENU ===========\n");
         printf("1. Jogo da Velha\n");
         printf("2. Campo Minado\n");
-        printf("3. \n");
+        printf("3. Batalha Naval\n");
         printf("4. \n");
         printf("5. \n");
         printf("6. \n");
@@ -98,12 +96,14 @@ int menu()
         case '0':
             return 0;
         case '1':
-            aula_01();
+            jogo_da_velha();
             break;
         case '2':
-            aula_08();
+            campo_minado();
             break;
         case '3':
+            batalha_naval();
+            break;
         case '4':
         case '5':
         case '6':

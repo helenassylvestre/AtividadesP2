@@ -33,18 +33,16 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="include/aula_01.h" />
-		<Unit filename="include/aula_04.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/aula_01.c">
+		<Unit filename="src/aula_01_velha.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/aula_04.c">
+		<Unit filename="src/aula_02_campominado.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/aula_08.c">
+		<Unit filename="src/aula_ponteiros.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/batalha_naval.c">
