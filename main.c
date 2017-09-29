@@ -55,6 +55,7 @@ int menu();
 int jogo_da_velha();
 int batalha_naval();
 int campo_minado();
+int aula_20170928();
 void gasolina();
 
 int main()
@@ -78,7 +79,7 @@ int menu()
         printf("1. Jogo da Velha\n");
         printf("2. Campo Minado\n");
         printf("3. Batalha Naval\n");
-        printf("4. \n");
+        printf("4. Aula 28/09\n");
         printf("5. \n");
         printf("6. \n");
         printf("7. \n");
@@ -105,6 +106,7 @@ int menu()
             batalha_naval();
             break;
         case '4':
+            aula_20170928();
         case '5':
         case '6':
         case '7':
