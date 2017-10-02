@@ -29,7 +29,7 @@
 1504580026 c:\suporte\documentos\google drive\fatec\programação 2\projetos\atividades\src\aula_01.c
 	<aula_01.h>
 
-1506177882 source:c:\users\hadston\google drive\fatec\programação 2\projetos\atividades\main.c
+1506901555 source:c:\users\hadston\google drive\fatec\programação 2\projetos\atividades\main.c
 	<stdio.h>
 	<stdlib.h>
 	<locale.h>
@@ -64,7 +64,7 @@
 1505772203 source:c:\suporte\documentos\google drive\fatec\programação 2\projetos\atividades\src\testes.c
 	<conio.h>
 
-1505772203 source:c:\users\hadston\google drive\fatec\programação 2\projetos\atividades\src\testes.c
+1506643713 source:c:\users\hadston\google drive\fatec\programação 2\projetos\atividades\src\testes.c
 	<conio.h>
 
 1506564345 source:c:\suporte\documentos\google drive\fatec\programação 2\projetos\atividades\src\batalha_naval.c
@@ -92,4 +92,27 @@
 	<conio.h>
 	<math.h>
 	<time.h>
+
+1506901391 source:c:\users\hadston\google drive\fatec\programação 2\projetos\atividades\src\aula_01_velha.c
+	<stdio.h>
+	<stdlib.h>
+
+1506643713 source:c:\users\hadston\google drive\fatec\programação 2\projetos\atividades\src\aula_02_campominado.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<math.h>
+	<time.h>
+
+1506643713 source:c:\users\hadston\google drive\fatec\programação 2\projetos\atividades\src\aula_ponteiros.c
+
+1506903752 source:c:\users\hadston\google drive\fatec\programação 2\projetos\atividades\src\batalha_naval.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+
+1506641901 source:c:\users\hadston\google drive\fatec\programação 2\projetos\atividades\src\aula_20170928.c
+	<stdio.h>
+	<stdlib.h>
 

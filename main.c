@@ -107,6 +107,7 @@ int menu()
             break;
         case '4':
             aula_20170928();
+            break;
         case '5':
         case '6':
         case '7':

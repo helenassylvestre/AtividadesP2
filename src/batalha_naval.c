@@ -28,7 +28,8 @@ struct campos
 struct jogadores
 {
     int jogador_id;
-    char nome[20];
+    char nome[15];
+    int blocos_ocupados;
 };
 
 struct tabuleiro
@@ -60,23 +61,30 @@ struct infos
 int batalha_naval();
 void desenharTela();
 int capturarMenu();
+int definirCampos();
+
 struct campo marcarNavios();
+struct jogadores jogadorAtual;
 int menuPosicao;
 int menuSelecionado;
+int telaAtual;
 
 /*
 * Função Principal
 */
 int batalha_naval()
 {
-    int continua;
-    //jogar
-    desenharTela(1, 0);
-    menuPosicao = 2;
+    int idMenu;
 
-    while (continua) {
-        continua = capturarMenu();
+    telaAtual = 0;
+    desenharTela(telaAtual, 0);
+    menuPosicao = 1;
 
+    while (idMenu) {
+        idMenu = capturarMenu();
+        if (idMenu == 1 && telaAtual == 1) {
+            definirCampos();
+        }
     }
 
     return 1;
@@ -95,7 +103,7 @@ void desenharTela (int tela, int posicao)
     // code
     switch (tela)
     {
-    case 1: // intro
+    case 0: // intro
         system("cls");
         printf("===============================================================================\n");
         printf("                                                                               \n");
@@ -123,7 +131,7 @@ void desenharTela (int tela, int posicao)
         printf("===============================================================================\n");
         printf("Pressione qualquer tecla para continuar...");
         break;
-    case 2: // menu
+    case 1: // menu
         linha_1 = "                             =      JOGAR       =                              \n";
         linha_2 = "                             =      PAUSE       =                              \n";
         linha_3 = "                             =    COMO JOGAR    =                              \n";
@@ -174,8 +182,59 @@ void desenharTela (int tela, int posicao)
         printf("                                                                               \n");
         printf("===============================================================================\n");
         break;
-    case 3: // prepara
-
+    case 2: // prepara Nome do Jogador
+        system("cls");
+        printf("BATALHA NAVAL - Preparação                                          Jogador #%d \n", jogadorAtual.jogador_id);
+        printf("===============================================================================\n");
+        printf("                                                                               \n");
+        printf("                                                                               \n");
+        printf("                                                                               \n");
+        printf("                                                                               \n");
+        printf("                                                                               \n");
+        printf("                 ============================================                  \n");
+        printf("                 =                                          =                  \n");
+        printf("                 =                                          =                  \n");
+        printf("                 =      Digite o nome do Jogador #%d:        =                  \n", jogadorAtual.jogador_id);
+        printf("                 =                                          =                  \n");
+        printf("                 =                                          =                  \n");
+        printf("                 ============================================                  \n");
+        printf("                                                                               \n");
+        printf("                                                                               \n");
+        printf("                                                                               \n");
+        printf("                                                                               \n");
+        printf("                                                                               \n");
+        printf("                                                                               \n");
+        printf("                                                                               \n");
+        printf("                                                                               \n");
+        printf("                                                                               \n");
+        printf("===============================================================================\n");
+        break;
+    case 3: // prepara Navios
+        system("cls");
+        printf("BATALHA NAVAL - Preparação                                 Blocos restantes: 30\n");
+        printf("=============================================|=================================\n");
+        printf("    0   1   2   3   4   5   6   7   8   9    |                                 \n");
+        printf("  -----------------------------------------  |  Nome do Jogador #1:            \n");
+        printf("0 |<+>|   |   |   |   |   |   |   |   |   |  |  [%s]\n", jogadorAtual.nome);
+        printf("  -----------------------------------------  |                                 \n");
+        printf("1 |   |   |   |   |   |   |   |   |   |   |  |  Navios (tamanho):              \n");
+        printf("  -----------------------------------------  |  1. Submarino (2 blocos)        \n");
+        printf("2 |   |   |   |   |   |   |   |   |   |   |  |  2. Contratorpedeiro (3 blocos) \n");
+        printf("  -----------------------------------------  |  3. Navio-tanque (4 blocos)     \n");
+        printf("3 |   |   |   |   |   |   |   |   |   |   |  |  4. Porta-avião (5 blocos)      \n");
+        printf("  -----------------------------------------  |                                 \n");
+        printf("4 |   |   |   |   |   |   |   |   |   |   |  |  Blocos ocupados:               \n");
+        printf("  -----------------------------------------  |  [%s] blocos\n", jogadorAtual.blocos_ocupados);
+        printf("5 |   |   |   |   |   |   |   |   |   |   |  |                                 \n");
+        printf("  -----------------------------------------  |                                 \n");
+        printf("6 |   |   |   |   |   |   |   |   |   |   |  |                                 \n");
+        printf("  -----------------------------------------  |                                 \n");
+        printf("7 |   |   |   |   |   |   |   |   |   |   |  |                                 \n");
+        printf("  -----------------------------------------  |                                 \n");
+        printf("8 |   |   |   |   |   |   |   |   |   |   |  |                                 \n");
+        printf("  -----------------------------------------  |                                 \n");
+        printf("9 |   |   |   |   |   |   |   |   |   |   |  |                                 \n");
+        printf("  -----------------------------------------  | ");
         break;
     case 4: // quadro
         break;
@@ -195,10 +254,12 @@ void desenharTela (int tela, int posicao)
 */
 int capturarMenu ()
 {
-    char tecla;
+    int tecla;
 
+    fflush(stdin);
     tecla = getch();
-    if (tecla == -32) {
+
+    if (tecla == 224) {
         tecla = getch();
         switch (tecla)
         {
@@ -214,14 +275,37 @@ int capturarMenu ()
             return 0;
         }
         if (tecla == 13){
-            return menuPosicao;
+            if (telaAtual >= 1) {
+                return menuPosicao;
+            }
+            if (telaAtual == 0) {
+                telaAtual = 1;
+            }
         }
     }
 
     if (menuPosicao < 1){ menuPosicao = 1; }
     if (menuPosicao > 5){ menuPosicao = 5; }
 
-    desenharTela(2, menuPosicao);
+    desenharTela(telaAtual, menuPosicao);
 
     return 9;
+}
+
+int definirCampos()
+{
+    // criar matriz com structs
+    struct embarcacoes navios[30];
+    navios[1].nome = "Submarino";
+
+
+    for (jogadorAtual.jogador_id = 1; jogadorAtual.jogador_id <= 2; jogadorAtual.jogador_id++) {
+        desenharTela(2, 0);
+        //fgets(jogadorAtual.nome, 15, stdin);
+        scanf("%s", jogadorAtual.nome);
+        desenharTela(3, 0);
+
+        getch();
+    }
+
 }
