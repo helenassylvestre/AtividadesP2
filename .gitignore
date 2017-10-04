@@ -1,3 +1,5 @@
 
 desktop.ini
 bin/Debug/Atividades.exe
+*.exe
+*.o
