@@ -13,7 +13,7 @@
 */
 struct embarcacoes
 {
-    char nome[20];
+    char *nome;
     int tamanho;
     int quantidade;
 };
@@ -65,6 +65,7 @@ int definirCampos();
 
 struct campo marcarNavios();
 struct jogadores jogadorAtual;
+struct embarcacoes navios[30];
 int menuPosicao;
 int menuSelecionado;
 int telaAtual;
@@ -95,6 +96,8 @@ int batalha_naval()
 */
 void desenharTela (int tela, int posicao)
 {
+    char *linha[5][20];
+    char *concatenar;
     char *linha_1;
     char *linha_2;
     char *linha_3;
@@ -210,6 +213,14 @@ void desenharTela (int tela, int posicao)
         printf("===============================================================================\n");
         break;
     case 3: // prepara Navios
+
+
+        //concatenar = *navios[1].nome;
+        *linha[1] = navios[1].nome;
+        strcat(*linha, " (");
+        //strcat(*linha[1], navios[1].tamanho);
+        //strcat(*linha[1], " blocos)");
+
         system("cls");
         printf("BATALHA NAVAL - Preparação                                 Blocos restantes: 30\n");
         printf("=============================================|=================================\n");
@@ -218,13 +229,13 @@ void desenharTela (int tela, int posicao)
         printf("0 |<+>|   |   |   |   |   |   |   |   |   |  |  [%s]\n", jogadorAtual.nome);
         printf("  -----------------------------------------  |                                 \n");
         printf("1 |   |   |   |   |   |   |   |   |   |   |  |  Navios (tamanho):              \n");
-        printf("  -----------------------------------------  |  1. Submarino (2 blocos)        \n");
-        printf("2 |   |   |   |   |   |   |   |   |   |   |  |  2. Contratorpedeiro (3 blocos) \n");
+        printf("  -----------------------------------------  |  1. [%s]\n", *linha[1]);
+        printf("2 |   |   |   |   |   |   |   |   |   |   |  |  2. Torpedeiro (3 blocos)       \n");
         printf("  -----------------------------------------  |  3. Navio-tanque (4 blocos)     \n");
         printf("3 |   |   |   |   |   |   |   |   |   |   |  |  4. Porta-avião (5 blocos)      \n");
         printf("  -----------------------------------------  |                                 \n");
         printf("4 |   |   |   |   |   |   |   |   |   |   |  |  Blocos ocupados:               \n");
-        printf("  -----------------------------------------  |  [%s] blocos\n", jogadorAtual.blocos_ocupados);
+        printf("  -----------------------------------------  |  [%02d] blocos\n", jogadorAtual.blocos_ocupados);
         printf("5 |   |   |   |   |   |   |   |   |   |   |  |                                 \n");
         printf("  -----------------------------------------  |                                 \n");
         printf("6 |   |   |   |   |   |   |   |   |   |   |  |                                 \n");
@@ -284,8 +295,8 @@ int capturarMenu ()
         }
     }
 
-    if (menuPosicao < 1){ menuPosicao = 1; }
-    if (menuPosicao > 5){ menuPosicao = 5; }
+    if (menuPosicao < 1){ menuPosicao = 5; }
+    if (menuPosicao > 5){ menuPosicao = 1; }
 
     desenharTela(telaAtual, menuPosicao);
 
@@ -294,11 +305,21 @@ int capturarMenu ()
 
 int definirCampos()
 {
-    // criar matriz com structs
-    struct embarcacoes navios[30];
+    // criar matriz com os navios disponíveis
     navios[1].nome = "Submarino";
+        navios[1].tamanho = 2;
+        navios[1].quantidade = 4;
+    navios[2].nome = "Torpedeiro";
+        navios[2].tamanho = 3;
+        navios[2].quantidade = 3;
+    navios[3].nome = "Navio-Tanque";
+        navios[3].tamanho = 4;
+        navios[3].quantidade = 2;
+    navios[4].nome = "Porta-Avião";
+        navios[4].tamanho = 5;
+        navios[4].quantidade = 1;
 
-
+    // Laço para os 2 (dois) jogadores
     for (jogadorAtual.jogador_id = 1; jogadorAtual.jogador_id <= 2; jogadorAtual.jogador_id++) {
         desenharTela(2, 0);
         //fgets(jogadorAtual.nome, 15, stdin);
