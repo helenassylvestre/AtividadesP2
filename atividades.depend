@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1506561250 source:c:\suporte\documentos\google drive\fatec\programação 2\projetos\atividades\main.c
+1507164787 source:c:\suporte\documentos\google drive\fatec\programação 2\projetos\atividades\main.c
 	<stdio.h>
 	<stdlib.h>
 	<locale.h>
@@ -61,13 +61,13 @@
 	<math.h>
 	<time.h>
 
-1505772203 source:c:\suporte\documentos\google drive\fatec\programação 2\projetos\atividades\src\testes.c
+1507164787 source:c:\suporte\documentos\google drive\fatec\programação 2\projetos\atividades\src\testes.c
 	<conio.h>
 
 1506643713 source:c:\users\hadston\google drive\fatec\programação 2\projetos\atividades\src\testes.c
 	<conio.h>
 
-1506564345 source:c:\suporte\documentos\google drive\fatec\programação 2\projetos\atividades\src\batalha_naval.c
+1507170889 source:c:\suporte\documentos\google drive\fatec\programação 2\projetos\atividades\src\batalha_naval.c
 	<stdio.h>
 	<stdlib.h>
 	<conio.h>
@@ -80,13 +80,13 @@
 	<math.h>
 	<time.h>
 
-1506177627 source:c:\suporte\documentos\google drive\fatec\programação 2\projetos\atividades\src\aula_ponteiros.c
+1507164787 source:c:\suporte\documentos\google drive\fatec\programação 2\projetos\atividades\src\aula_ponteiros.c
 
-1506185673 source:c:\suporte\documentos\google drive\fatec\programação 2\projetos\atividades\src\aula_01_velha.c
+1507164787 source:c:\suporte\documentos\google drive\fatec\programação 2\projetos\atividades\src\aula_01_velha.c
 	<stdio.h>
 	<stdlib.h>
 
-1506185730 source:c:\suporte\documentos\google drive\fatec\programação 2\projetos\atividades\src\aula_02_campominado.c
+1507164787 source:c:\suporte\documentos\google drive\fatec\programação 2\projetos\atividades\src\aula_02_campominado.c
 	<stdio.h>
 	<stdlib.h>
 	<conio.h>
@@ -113,6 +113,10 @@
 	<string.h>
 
 1506641901 source:c:\users\hadston\google drive\fatec\programação 2\projetos\atividades\src\aula_20170928.c
+	<stdio.h>
+	<stdlib.h>
+
+1507164787 source:c:\suporte\documentos\google drive\fatec\programação 2\projetos\atividades\src\aula_20170928.c
 	<stdio.h>
 	<stdlib.h>
 
