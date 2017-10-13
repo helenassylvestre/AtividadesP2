@@ -48,6 +48,9 @@
 		<Unit filename="src/aula_ponteiros.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/auxiliar.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="src/batalha_naval.c">
 			<Option compilerVar="CC" />
 		</Unit>

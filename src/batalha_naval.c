@@ -1,12 +1,16 @@
+/** @file batalha_naval.c @brief Arquivo do jogo Batalha Naval. */
 /*
-* Documento de especificaÃ§Ãµes:
-* C:\Suporte\Documentos\Google Drive\Fatec\ProgramaÃ§Ã£o 2\Projetos\atividades\docs\EspecificaÃ§Ãµes do Jogo.docx
+* Documento de especificações:
+* C:\Suporte\Documentos\Google Drive\Fatec\Programação 2\Projetos\atividades\docs\Especificações do Jogo.docx
 *
 */
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
 #include <string.h>
+#include <locale.h>
+#include <time.h>
+#include <dos.h>
 
 /*
 * Registros
@@ -21,9 +25,8 @@ struct embarcacoes
 
 struct campos
 {
-    int jogador_id;
-    char navios[1];
-    char ataques[1];
+    char navios[1][10][40];
+    char ataques[1][10][40];
 } campo;
 
 struct jogadores
@@ -37,7 +40,7 @@ struct jogadores
 
 struct tabuleiro
 {
-    //talvez nÃ£o precise deste registro
+    //talvez não precise deste registro
 };
 
 struct infos
@@ -56,10 +59,14 @@ struct infos
 /*
 * Constantes
 */
-
+#define MIRA "<+>"
+#define CMAR '~'
+#define TIRO 'o'
+#define NAVIO '#'
+#define ATINGIDO 'x'
 
 /*
-* DeclaraÃ§Ãµes
+* Declarações
 */
 int batalha_naval();
 void desenharTela();
@@ -74,11 +81,13 @@ int menuSelecionado;
 int telaAtual;
 
 /*
-* FunÃ§Ã£o Principal
+* Função Principal
 */
 int batalha_naval()
 {
     int idMenu;
+
+    setlocale(LC_CTYPE, "portuguese_brazil.1252");
 
     telaAtual = 0;
     desenharTela(telaAtual, 0);
@@ -99,9 +108,9 @@ int batalha_naval()
 }
 
 /*
-* FunÃ§Ã£o desenharTela
+* Função desenharTela
 */
-void desenharTela (int tela, int posicao, int instrucao)
+void desenharTela (int tela, int posicao, int instrucao, struct campos campo[])
 {
     //int i;
     char *linha_1;
@@ -118,7 +127,7 @@ void desenharTela (int tela, int posicao, int instrucao)
         printf("===============================================================================\n");
         printf("                                                                               \n");
         printf("                                     -*+*+                -                    \n");
-        printf("    Trabalho de ProgramaÃ§Ã£o    -+*+  *:+#+@-  -  :+-   -+W#           -=-      \n");
+        printf("    Trabalho de Programação    -+*+  *:+#+@-  -  :+-   -+W#           -=-      \n");
         printf("                               *+++#= -#+  ==-=:*:#-+ ::==+-       ---+:--     \n");
         printf("          24/09/2017             *@+ +#- #+ -#: *+++=:+++-:      -*@##@:- -    \n");
         printf("                                    *@:-=: =+ :#  ++ -: :+:     --  :#:-- -    \n");
@@ -145,7 +154,7 @@ void desenharTela (int tela, int posicao, int instrucao)
         linha_1 = "                             =      JOGAR       =                              \n";
         linha_2 = "                             =      PAUSE       =                              \n";
         linha_3 = "                             =    COMO JOGAR    =                              \n";
-        linha_4 = "                             =     PONTUAÃ‡ÃƒO    =                              \n";
+        linha_4 = "                             =     PONTUAÇÃO    =                              \n";
         linha_5 = "                             =       SAIR       =                              \n";
 
         switch (posicao)
@@ -160,7 +169,7 @@ void desenharTela (int tela, int posicao, int instrucao)
             linha_3 = "                             = >  COMO JOGAR  < =                              \n";
             break;
         case 4:
-            linha_4 = "                             = >   PONTUAÃ‡ÃƒO  < =                              \n";
+            linha_4 = "                             = >   PONTUAÇÃO  < =                              \n";
             break;
         case 5:
             linha_5 = "                             = >     SAIR     < =                              \n";
@@ -194,7 +203,7 @@ void desenharTela (int tela, int posicao, int instrucao)
         break;
     case 2: // prepara Nome do Jogador
         system("cls");
-        printf("BATALHA NAVAL - PreparaÃ§Ã£o                                          Jogador #%d \n", jogadorAtual.jogador_id);
+        printf("BATALHA NAVAL - Preparação                                          Jogador #%d \n", jogadorAtual.jogador_id);
         printf("===============================================================================\n");
         printf("                                                                               \n");
         printf("                                                                               \n");
@@ -220,8 +229,17 @@ void desenharTela (int tela, int posicao, int instrucao)
         printf("===============================================================================\n");
         break;
     case 3: // prepara Navios
+        switch (instrucao)
+        {
+        case 1:
+            linha_1 = "Escolha o navio";
+            break;
+        case 2:
+            linha_1 = "Digite o Navio a ser colocado";
+            break;
+        }
         system("cls");
-        printf("BATALHA NAVAL - PreparaÃ§Ã£o                                 Blocos restantes: 30\n");
+        printf("BATALHA NAVAL - Preparação                                 Blocos restantes: 30\n");
         printf("=============================================|=================================\n");
         printf("    0   1   2   3   4   5   6   7   8   9    |                                 \n");
         printf("  -----------------------------------------  |  Nome do Jogador #1:            \n");
@@ -233,8 +251,8 @@ void desenharTela (int tela, int posicao, int instrucao)
         printf("  -----------------------------------------  |  3. %s (%d blocos)\n", navios[2].nome, navios[2].colocados[jogadorAtual.jogador_id]);
         printf("3 |   |   |   |   |   |   |   |   |   |   |  |  4. %s (%d blocos)\n", navios[3].nome, navios[3].colocados[jogadorAtual.jogador_id]);
         printf("  -----------------------------------------  |                                 \n");
-        printf("4 |   |   |   |   |   |   |   |   |   |   |  |  Navios disponÃ­veis:            \n");
-        printf("  -----------------------------------------  |  %02d navios disponÃ­veis\n", jogadorAtual.naviosDisponiveis);
+        printf("4 |   |   |   |   |   |   |   |   |   |   |  |  Navios disponíveis:            \n");
+        printf("  -----------------------------------------  |  %02d navios disponíveis\n", jogadorAtual.naviosDisponiveis);
         printf("5 |   |   |   |   |   |   |   |   |   |   |  |                                 \n");
         printf("  -----------------------------------------  |  Blocos restantes:              \n");
         printf("6 |   |   |   |   |   |   |   |   |   |   |  |  %02d blocos restantes\n", jogadorAtual.blocosRestantes);
@@ -243,17 +261,8 @@ void desenharTela (int tela, int posicao, int instrucao)
         printf("  -----------------------------------------  |                                 \n");
         printf("8 |   |   |   |   |   |   |   |   |   |   |  |                                 \n");
         printf("  -----------------------------------------  |                                 \n");
-        switch (instrucao)
-        {
-        case 1:
-            printf("9 |   |   |   |   |   |   |   |   |   |   |  |  Escolha o navio: \n");
-            printf("  -----------------------------------------  |  [1-4]>");
-            break;
-        case 2:
-            printf("9 |   |   |   |   |   |   |   |   |   |   |  |  Digite o Navio a ser colocado: \n");
-            printf("  -----------------------------------------  |  [1-4]>");
-            break;
-        }
+        printf("9 |   |   |   |   |   |   |   |   |   |   |  |  %s: \n", linha_1);
+        printf("  -----------------------------------------  |  [1-4]>");
         break;
     case 4: // quadro
         break;
@@ -265,11 +274,10 @@ void desenharTela (int tela, int posicao, int instrucao)
         printf("WEEErrOoo!\n");
         break;
     }
-
 }
 
 /*
-* FunÃ§Ãµes capturarMenu
+* Funções capturarMenu
 */
 int capturarMenu ()
 {
@@ -306,7 +314,7 @@ int capturarMenu ()
     if (menuPosicao < 1){ menuPosicao = 5; }
     if (menuPosicao > 5){ menuPosicao = 1; }
 
-    desenharTela(telaAtual, menuPosicao, 0);
+    desenharTela(telaAtual, menuPosicao, 0, NULL);
 
     return 9;
 }
@@ -318,13 +326,12 @@ int definirCampos()
     int navioQuantidade[5];
     int naviosBlocosColocados[5];
     int naviosTotal = 0;
-    int naviosDisponiveis = 0;
     int blocosTotal = 0;
-    int blocosRestantes = 0;
     int navioEscolhido = 0;
     int ehNumero = 0;
+    int linha, coluna;
 
-    // Prenchimento da matriz com os navios disponÃ­veis
+    // Prenchimento da matriz com os navios disponíveis
     strcpy(navios[0].nome, "Submarino");
         navios[0].tamanho = 2;
         navios[0].quantidade = 4;
@@ -334,51 +341,59 @@ int definirCampos()
     strcpy(navios[2].nome, "Navio-Tanque");
         navios[2].tamanho = 4;
         navios[2].quantidade = 2;
-    strcpy(navios[3].nome, "Porta-AviÃ£o");
+    strcpy(navios[3].nome, "Porta-Avião");
         navios[3].tamanho = 5;
         navios[3].quantidade = 1;
 
-    // LaÃ§o para os 2 (dois) jogadores
+    // Laço para os 2 (dois) jogadores
     for (jogadorAtual.jogador_id = 1; jogadorAtual.jogador_id <= 2; jogadorAtual.jogador_id++) {
         //Coleta nome do jogador
-        desenharTela(2, 0, 0);
+        desenharTela(2, 0, 0, NULL);
         scanf("%s", jogadorAtual.nome);
 
-        //Coleta posiÃ§Ãµes dos navios
+        //Calcula quantidade de blocos por navios
         for (i=0; i<5; i++) {
             navios[i].colocados[jogadorAtual.jogador_id] = navios[i].tamanho;
             naviosTotal = naviosTotal + navios[i].quantidade;
             blocosTotal = blocosTotal + (navios[i].quantidade * navios[i].tamanho);
         }
-        naviosDisponiveis = naviosTotal;
-        blocosRestantes = blocosTotal;
+        jogadorAtual.naviosDisponiveis = naviosTotal;
+        jogadorAtual.blocosRestantes = blocosTotal;
 
-        desenharTela(3, 0, 1);
+        desenharTela(3, 0, 1, NULL);
 
-        //recebe o nÃºmero do navio escolhido para ser preenchido
+        //Recebe o número do navio escolhido
         ehNumero = 0;
         while (!ehNumero)
         {
             fflush(stdin);
             navioEscolhido = getch();
-            if (navioEscolhido == (int)navioEscolhido)
-            {
-                ehNumero = 1;
+
+            if (navioEscolhido > 48 && navioEscolhido < 53) {
+                ehNumero = aux_isNumber(navioEscolhido);
+                printf("%c", navioEscolhido);
             }
         }
-        system("cls");
-        printf("Ã‰ nÃºmero: %d", ehNumero);
-        getch();
 
+        //Prepara Campo
+        for (linha=0; linha<10; linha++)
+        {
+            for (coluna=0; coluna<10; coluna++)
+            {
+                campo.navios[jogadorAtual.jogador_id][linha][coluna];
+            }
+        }
 
-        while (blocosRestantes > 0)
+        //Coleta posições dos navios
+        while (jogadorAtual.blocosRestantes > 0)
         {
             //code
-
+            aux_delay(1);
+            desenharTela(3, 0, 1, NULL);
         }
 
         system("cls");
-        printf("Fim da programaÃ§Ã£o! Pressione qualquer tecla para sair...");
+        printf("Fim da programação! Pressione qualquer tecla para sair...");
         getch();
         return 9;
     }

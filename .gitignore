@@ -2,3 +2,5 @@ desktop.ini
 bin/Debug/Atividades.exe
 *.exe
 *.o
+docs/doxy/
+doxygen/doxyfile
