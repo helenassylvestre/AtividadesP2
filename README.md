@@ -19,27 +19,27 @@ Cada jogador posiciona os seus navios no campo em posições aleatórias
 ### PASSOS
 Passos para a construção do jogo
 1.	Definir campos
--	Tamanho fixo (10x10)
--	Limpar campo (~)
--	c_navios_1
--	c_navios_2
--	c_ataque_1
--	c_ataque_2
+	-	Tamanho fixo (10x10)
+	-	Limpar campo (~)
+	-	c_navios_1
+	-	c_navios_2
+	-	c_ataque_1
+	-	c_ataque_2
 2.	Imprimir Tabuleiro
 3.	Marcar navios
--	Jogador X coloca navios no campo cnavios1
--	Menu tipo de navios e quantidade
--	Pontos do navio
+	-	Jogador X coloca navios no campo cnavios1
+	-	Menu tipo de navios e quantidade
+	-	Pontos do navio
 4.	Jogada
--	Jogador 1 faz jogada
--	Pede posição (l, c)
--	Se tiver '.' ok
--	Ver em c_navios_2 (l, c)
---	Se '.' marca '~' em c_ataque_1
---	Se '*' marca '*' em c_ataque_1
---	Incrementar Jogador.Pontuação
+	-	Jogador 1 faz jogada
+	-	Pede posição (l, c)
+	-	Se tiver '.' ok
+	-	Ver em c_navios_2 (l, c)
+	 -	Se '.' marca '~' em c_ataque_1
+	 -	Se '*' marca '*' em c_ataque_1
+	 -	Incrementar Jogador.Pontuação
 5.	VerificarVencedor
--	Se Jogador.Pontuação == 0 Jogador Ganhou
+	-	Se Jogador.Pontuação == 0 Jogador Ganhou
 6.	Desenho do Tabuleiro
 ```
     0   1   2   3   4   5   6   7   8   9
