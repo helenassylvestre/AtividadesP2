@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1507764736 source:c:\suporte\documentos\google drive\fatec\programação 2\projetos\atividades\main.c
+1507768336 source:c:\suporte\documentos\google drive\fatec\programação 2\projetos\atividades\main.c
 	<stdio.h>
 	<stdlib.h>
 	<locale.h>
@@ -61,13 +61,13 @@
 	<math.h>
 	<time.h>
 
-1507164787 source:c:\suporte\documentos\google drive\fatec\programação 2\projetos\atividades\src\testes.c
+1507168387 source:c:\suporte\documentos\google drive\fatec\programação 2\projetos\atividades\src\testes.c
 	<conio.h>
 
 1506643713 source:c:\users\hadston\google drive\fatec\programação 2\projetos\atividades\src\testes.c
 	<conio.h>
 
-1507859872 source:c:\suporte\documentos\google drive\fatec\programação 2\projetos\atividades\src\batalha_naval.c
+1508345873 source:c:\suporte\documentos\google drive\fatec\programação 2\projetos\atividades\src\batalha_naval.c
 	<stdio.h>
 	<stdlib.h>
 	<conio.h>
@@ -83,14 +83,14 @@
 	<math.h>
 	<time.h>
 
-1507856045 source:c:\suporte\documentos\google drive\fatec\programação 2\projetos\atividades\src\aula_ponteiros.c
+1507859645 source:c:\suporte\documentos\google drive\fatec\programação 2\projetos\atividades\src\aula_ponteiros.c
 	<stdio.h>
 
-1507164787 source:c:\suporte\documentos\google drive\fatec\programação 2\projetos\atividades\src\aula_01_velha.c
+1507168387 source:c:\suporte\documentos\google drive\fatec\programação 2\projetos\atividades\src\aula_01_velha.c
 	<stdio.h>
 	<stdlib.h>
 
-1507164787 source:c:\suporte\documentos\google drive\fatec\programação 2\projetos\atividades\src\aula_02_campominado.c
+1507168387 source:c:\suporte\documentos\google drive\fatec\programação 2\projetos\atividades\src\aula_02_campominado.c
 	<stdio.h>
 	<stdlib.h>
 	<conio.h>
@@ -120,11 +120,11 @@
 	<stdio.h>
 	<stdlib.h>
 
-1507164787 source:c:\suporte\documentos\google drive\fatec\programação 2\projetos\atividades\src\aula_20170928.c
+1507168387 source:c:\suporte\documentos\google drive\fatec\programação 2\projetos\atividades\src\aula_20170928.c
 	<stdio.h>
 	<stdlib.h>
 
-1507860350 source:c:\suporte\documentos\google drive\fatec\programação 2\projetos\atividades\src\auxiliar.c
+1507864023 source:c:\suporte\documentos\google drive\fatec\programação 2\projetos\atividades\src\auxiliar.c
 	<stdio.h>
 	<string.h>
 	<time.h>
