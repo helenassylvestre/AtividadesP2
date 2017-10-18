@@ -35,9 +35,9 @@ Passos para a construção do jogo
 	-	Pede posição (l, c)
 	-	Se tiver '.' ok
 	-	Ver em c_navios_2 (l, c)
-	 -	Se '.' marca '~' em c_ataque_1
-	 -	Se '*' marca '*' em c_ataque_1
-	 -	Incrementar Jogador.Pontuação
+	- 	- Se '.' marca '~' em c_ataque_1
+	- 	- Se '*' marca '*' em c_ataque_1
+	- 	- Incrementar Jogador.Pontuação
 5.	VerificarVencedor
 	-	Se Jogador.Pontuação == 0 Jogador Ganhou
 6.	Desenho do Tabuleiro
