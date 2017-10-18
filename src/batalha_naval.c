@@ -376,19 +376,41 @@ int definirCampos()
         }
 
         //Prepara Campo
+        //E adiciona para todos o caracter ~
         for (linha=0; linha<10; linha++)
         {
             for (coluna=0; coluna<10; coluna++)
             {
-                campo.navios[jogadorAtual.jogador_id][linha][coluna];
+                campo.navios[jogadorAtual.jogador_id][linha][coluna] = CMAR;
             }
         }
+
+        // bloco que imprime o vetor em formato de tabuleiro
+        printf("\n");
+        printf("  ");
+        for (coluna=0; coluna<10; coluna++)
+        {
+            printf("  %d ", coluna);
+        }
+        printf("\n");
+        for (linha=0; linha<10; linha++)
+        {
+            printf("  -----------------------------------------\n");
+            printf("%d ", linha);
+            for (coluna=0; coluna<10; coluna++)
+            {
+                printf("| %c ", campo.navios[jogadorAtual.jogador_id][linha][coluna]);
+            }
+            printf("|\n");
+        }
+        printf("  -----------------------------------------\n");
+        system("pause");
 
         //Coleta posições dos navios
         while (jogadorAtual.blocosRestantes > 0)
         {
             //code
-            aux_delay(1);
+            //aux_delay(1); // Teste de delay
             desenharTela(3, 0, 1, NULL);
         }
 
